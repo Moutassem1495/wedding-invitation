@@ -73,6 +73,9 @@ svg.fl{position:absolute;pointer-events:none}
 </style>
 </head>
 <body class="lock">
+  <audio id="music" loop>
+  <source src="atlasaudio-romantic-wedding-625735.mp3" type="audio/mpeg">
+</audio>
 <main class="card">
   <div class="wash"></div>
   <svg class="fl" id="f1" viewBox="0 0 230 230"></svg>
@@ -172,9 +175,17 @@ envArt('ar',140,400,3.14,11,true);
 // Open the envelope
 var env=document.getElementById('env');
 function openEnv(){
-  if(env.classList.contains('open'))return;
-  env.classList.add('open');
-  setTimeout(function(){env.style.display='none';document.body.classList.remove('lock');initScratch(true)},1250);
+if(env.classList.contains('open')) return;
+ 
+env.classList.add('open');
+ 
+document.getElementById('music').play().catch(function(){});
+ 
+setTimeout(function(){
+env.style.display='none';
+document.body.classList.remove('lock');
+initScratch(true);
+},1250);
 }
 env.addEventListener('click',openEnv);
 env.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openEnv()}});
